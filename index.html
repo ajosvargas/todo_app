@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
     <title>Todo Application</title>
 </head>
 <body>
-    <h1 id="header">TODO List</h1>
+    <h1 id="header">TODO LIST</h1>
+    <form id="todo-form">
+        <input type="text" placeholder="Enter Todo..." class="input" required>
+        <button type="submit" class="button">Submit</button>
+    </form>
+    <div id="todo-container">
+        <div class="complete-remove">Completed</div>
+        <div class="task">Task</div>
+        <div class="complete-remove">Remove</div>
+    </div>
 </body>
 </html>

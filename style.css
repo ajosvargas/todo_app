@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+#header {
+    font-size: 3rem;
+    margin:3rem 0;
+    text-align: center;
+}
+
+#todo-form {
+    margin: 0 auto;
+    text-align: center;
+    width: 33%;
+}
+
+.input, button {
+    padding: 12px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.input {
+    width: 50%;
+}
+
+#todo-container {
+    display: flex;
+    width: 60%;
+    margin: 3rem auto 0;
+    justify-content: space-evenly;
+}
+
+.complete-remove, .task {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+.complete-remove {
+    width: 15%;
+}
+
+.task {
+    width: 70%;
+}
