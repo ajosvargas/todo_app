@@ -29,10 +29,9 @@
     width: 50%;
 }
 
-#todo-container {
+#todo-container, .task-container {
     display: flex;
-    width: 60%;
-    margin: 3rem auto 0;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
@@ -48,4 +47,22 @@
 
 .task {
     width: 70%;
+}
+
+#todo-container {
+    width: 60%;
+    margin: 3rem auto 0;
+}
+
+.task-container {
+    width: 100%;
+}
+
+.new-task {
+    margin-top: 20px;
+    border: none;
+}
+
+.strike-through {
+    text-decoration: line-through;
 }
