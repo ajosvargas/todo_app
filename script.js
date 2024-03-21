@@ -20,6 +20,7 @@ form.addEventListener('submit',(e) => {
         todoRow[i].classList.add('new-task');
         div.append(todoRow[i]);
     }
+    storeObject(todoRow);
     task.value = "";
 })
 
@@ -34,4 +35,19 @@ function createTask() {
     button.innerText = "Remove";
     button.classList.add('complete-remove');
     return [checkbox, todo, button];
+}
+
+function storeObject(task){
+    let obj = {checked: task[0].checked, text:task[1].innerText, button : task[2].innerText};
+
+    if(localStorage.todos === undefined){
+        let currentTodos = [];
+        currentTodos.push(obj);
+        localStorage.setItem('todos', JSON.stringify(currentTodos));
+    } else {
+        let storageTodos = localStorage.getItem('todos');
+        currentTodos = JSON.parse(storageTodos);
+        currentTodos.push(obj);
+        localStorage.setItem('todos',JSON.stringify(currentTodos));
+    }
 }
