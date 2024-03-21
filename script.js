@@ -3,6 +3,37 @@ const todoContainer = document.querySelector("#todo-container");
 let task = document.querySelector(".input");
 let counter = 0;
 
+if(localStorage.getItem('counter')) {
+    let currentCount = JSON.parse(localStorage.getItem('counter'));
+    counter = currentCount + 1;
+}
+
+if(localStorage.getItem('todos')){
+    let currentTodos = JSON.parse(localStorage.getItem('todos'));
+    for(obj of currentTodos) {
+        let createDiv = document.createElement('div');
+        createDiv.classList.add('task-container');
+        let createInput = document.createElement('input');
+        createInput.setAttribute("type", "checkbox");
+        createInput.classList.add("complete-remove","new-task");
+        createInput.checked = obj.checked;
+        let createEl = document.createElement('p');
+        if(obj.checked === true){
+            createEl.style.textDecoration = "line-through";
+        }
+        createEl.classList.add("task","new-task");
+        createEl.innerText = obj.text;
+        let createButton = document.createElement('button');
+        createButton.classList.add("complete-remove", "new-task");
+        createButton.innerHTML = "Remove";
+        createButton.setAttribute('data-task', obj.button);
+        createDiv.append(createInput);
+        createDiv.append(createEl);
+        createDiv.append(createButton);
+        todoContainer.append(createDiv);
+    }
+}
+
 todoContainer.addEventListener("click", removeChecked);
 
 function removeChecked(e) {
@@ -13,13 +44,14 @@ function removeChecked(e) {
             if(parsedTodos[i].button === e.target.nextElementSibling.nextElementSibling.getAttribute('data-task')){
                 if(parsedTodos[i]['checked'] === false){
                     parsedTodos[i]['checked'] = true;
+                    e.target.nextElementSibling.style.textDecoration = "line-through";
                 } else {
                     parsedTodos[i]['checked'] = false;
+                    e.target.nextElementSibling.style.textDecoration = "none";
                 }
                 break;
             }
         }
-        e.target.nextElementSibling.classList.toggle("strike-through");
     }else if(e.target.tagName === "BUTTON") {
         for(let i = 0; i < parsedTodos.length; i++){
             if(parsedTodos[i].button === e.target.getAttribute('data-task')){
@@ -29,11 +61,7 @@ function removeChecked(e) {
         }
         e.target.parentElement.remove();
     }
-    if(parsedTodos.length === 0){
-        localStorage.removeItem('todos');
-    } else {
-        localStorage.setItem('todos', JSON.stringify(parsedTodos));
-    }
+    localStorage.setItem('todos', JSON.stringify(parsedTodos));
 }
 
 form.addEventListener("submit", (e) => {
